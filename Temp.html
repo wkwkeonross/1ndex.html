@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        .result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Temperature Converter</h2>
+
+<label>Enter Temperature in Celsius:</label><br>
+<input type="number" id="celsius" placeholder="Enter Celsius value"><br>
+
+<label>Select Conversion:</label><br>
+<select id="conversionType">
+    <option value="fahrenheit">Convert to Fahrenheit</option>
+    <option value="kelvin">Convert to Kelvin</option>
+</select><br>
+
+<button onclick="convertTemperature()">Convert</button>
+
+<div class="result" id="output"></div>
+
+<script>
+function convertTemperature() {
+    let celsius = parseFloat(document.getElementById("celsius").value);
+    let conversionType = document.getElementById("conversionType").value;
+    let result;
+
+    if (isNaN(celsius)) {
+        document.getElementById("output").innerHTML = "Please enter a valid number.";
+        return;
+    }
+
+    switch (conversionType) {
+        case "fahrenheit":
+            result = (celsius * 9/5) + 32;
+            document.getElementById("output").innerHTML =
+                celsius + "°C = " + result.toFixed(2) + "°F";
+            break;
+
+        case "kelvin":
+            result = celsius + 273.15;
+            document.getElementById("output").innerHTML =
+                celsius + "°C = " + result.toFixed(2) + " K";
+            break;
+
+        default:
+            document.getElementById("output").innerHTML = "Invalid selection.";
+    }
+}
+</script>
+
+</body>
+</html>

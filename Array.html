@@ -1,0 +1,97 @@
+<html>
+<head>
+    <title>Array Statistician</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        button {
+            padding: 8px 15px;
+            margin-bottom: 15px;
+        }
+        .output {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Array Statistician</h2>
+<button onclick="analyzeArray()">Generate & Analyze</button>
+
+<div class="output" id="result"></div>
+
+<script>
+function analyzeArray() {
+
+    // 1️⃣ Generate array of 20 random integers (1–100)
+    let numbers = [];
+    for (let i = 0; i < 20; i++) {
+        numbers.push(Math.floor(Math.random() * 100) + 1);
+    }
+
+    // 2️⃣ Calculate Mean
+    let sum = 0;
+    for (let i = 0; i < numbers.length; i++) {
+        sum += numbers[i];
+    }
+    let mean = sum / numbers.length;
+
+    // 3️⃣ Sort array manually (Bubble Sort)
+    for (let i = 0; i < numbers.length - 1; i++) {
+        for (let j = 0; j < numbers.length - i - 1; j++) {
+            if (numbers[j] > numbers[j + 1]) {
+                let temp = numbers[j];
+                numbers[j] = numbers[j + 1];
+                numbers[j + 1] = temp;
+            }
+        }
+    }
+
+    // 4️⃣ Calculate Median
+    let median;
+    let middle = numbers.length / 2;
+
+    if (numbers.length % 2 === 0) {
+        median = (numbers[middle - 1] + numbers[middle]) / 2;
+    } else {
+        median = numbers[Math.floor(middle)];
+    }
+
+    // 5️⃣ Calculate Mode manually
+    let frequency = {};
+    let maxCount = 0;
+    let mode = [];
+
+    for (let i = 0; i < numbers.length; i++) {
+        let num = numbers[i];
+
+        if (frequency[num] == null) {
+            frequency[num] = 1;
+        } else {
+            frequency[num]++;
+        }
+
+        if (frequency[num] > maxCount) {
+            maxCount = frequency[num];
+        }
+    }
+
+    for (let key in frequency) {
+        if (frequency[key] === maxCount) {
+            mode.push(key);
+        }
+    }
+
+    // 6️⃣ Display results
+    document.getElementById("result").innerHTML =
+        "Array: " + numbers.join(", ") + "<br><br>" +
+        "Mean: " + mean.toFixed(2) + "<br>" +
+        "Median: " + median + "<br>" +
+        "Mode: " + mode.join(", ");
+}
+</script>
+
+</body>
+</html>

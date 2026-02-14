@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title>10x10 Multiplication Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+            width: 40px;
+        }
+        .even-row {
+            background-color: #f2f2f2;
+        }
+        .odd-row {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+<h2 style="text-align:center;">10x10 Multiplication Table</h2>
+
+<div id="table-container" style="text-align:center;"></div>
+
+<script>
+    let table = document.createElement("table");
+
+    for (let i = 1; i <= 10; i++) {
+        let row = document.createElement("tr");
+
+        // Alternate row colors using modulo
+        if (i % 2 === 0) {
+            row.className = "even-row";
+        } else {
+            row.className = "odd-row";
+        }
+
+        for (let j = 1; j <= 10; j++) {
+            let cell = document.createElement("td");
+            cell.textContent = i * j;
+            row.appendChild(cell);
+        }
+
+        table.appendChild(row);
+    }
+
+    document.getElementById("table-container").appendChild(table);
+</script>
+
+</body>
+</html>
